@@ -25,14 +25,33 @@
 			<div id="button">Refresh GPS: <div id="timer"></div></div>
 
 			<div class="area">
-				<div class="box box1"><div id="latitude">Blah</div></div>
-				<div class="box box2"><div id="longitude">Blah</div></div>
+				<div class="box box1"><div id="latitude"></div></div>
+				<div class="box box2"><div id="longitude"></div></div>
+				
+				<button onclick="getLocation()">Try it</button>
 			</div>
-
-
-
+			
+		<div id = "error"></div>
+		
 		<script>
-
-</script>
+		var x = document.getElementById("latitude");
+		var y = document.getElementById("longitude");
+		var e = document.getElementById("error")
+		
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+			} else {
+				e.innerHTML = "Geolocation is not supported by this browser.";
+			}
+		}
+		function showPosition(position) {
+			var lat = (position.coords.latitude).toFixed(5);
+			var longi = (position.coords.longitude).toFixed(5);
+			
+			x.innerHTML = lat;
+			y.innerHTML = longi;
+		}
+		</script>
 	</body>
 </html>
